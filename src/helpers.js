@@ -44,8 +44,13 @@ export function getEntityList(key = null, value = null) {
   } else {
     const entities = this.upstream;
     for (const name in entities) {
-      if (entities[name][key] === value) {
-        list.push(name);
+
+      if (entities[name][key] !== undefined && entities[name][key] !== null) {
+          entities[name][key].forEach((item, index) => {
+            if (item === value) {
+              list.push(name);
+            };
+          })
       }
     }
   }
